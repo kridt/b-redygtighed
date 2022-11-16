@@ -31,7 +31,7 @@ function App() {
         <h2>Lige nu</h2>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
           <h2>Time: {nu}</h2>
-          <h2>Grader: {weather?.hourly.temperature_2m[nu]}</h2>
+          <h2>Grader: {weather?.hourly?.temperature_2m[nu]}</h2>
         </div>
       </div>
 
