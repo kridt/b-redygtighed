@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 function App() {
   const [location, setLocation] = useState({});
   const [weather, setWeather] = useState({});
-  const nu = new Date().getHours();
+  const [currentTime, setCurrentTime] = useState("");
 
-  console.log(nu);
+  const nu = new Date().getHours();
+  window.setInterval(function () {
+    const minut = new Date().getMinutes();
+    const sec = new Date().getSeconds();
+    // call your function here
+    setCurrentTime(`${nu}:${minut}:${sec}`);
+  }, 1000);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -19,7 +25,6 @@ function App() {
       )
       .then((e) => {
         setWeather(e.data);
-        console.log(weather);
       });
   }, []);
 
@@ -30,7 +35,7 @@ function App() {
       <div style={{ textAlign: "center" }}>
         <h2>Lige nu</h2>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-          <h2>Time: {nu}</h2>
+          <h2>Time: {currentTime}</h2>
           <h2>Grader: {weather?.hourly?.temperature_2m[nu]}</h2>
         </div>
       </div>
